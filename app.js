@@ -91,6 +91,7 @@ let questions = [
     },
 ]
 const startBtn = document.getElementById("startBtn");
+const resetBtn = document.getElementById("resetBtn");
 const questionElem = document.getElementById("question");
 const choicesElem = document.getElementById("choices");
 const submitBtn = document.getElementById("submitBtn");
@@ -101,6 +102,16 @@ let correctAnswer = [];
 let int = null;
 
 startBtn.addEventListener('click', () => {
+    startBtn.innerHTML = `Daj novo pitanje!`;
+    submitBtn.style.visibility = 'visible';
+
+    if (int !== null) {
+        clearInterval(int);
+        [milliseconds, seconds] = [0, 0];
+        timerRef.innerHTML = `00 : 000`;
+        
+    }
+
     randomQuestion = Math.random() * questions.length | 0;
     questionElem.innerHTML = questions[randomQuestion].question;
 
@@ -108,9 +119,10 @@ startBtn.addEventListener('click', () => {
 
     let output = '';
     const choicesArr = getRandomisedOrderArray();
+    const letters = ['A:', 'B:', 'C:', 'D:'];
 
-    choicesArr.forEach(choice => {
-        output += `<button class="choiceBtns">${choice}</button>`;
+    choicesArr.forEach((choice, index) => {
+            output += `<button class="choiceBtns "><span id="answerLetter">${letters.at(index)}</span> ${choice}</button>`;
     })
 
     choicesElem.innerHTML = output;
@@ -122,7 +134,7 @@ startBtn.addEventListener('click', () => {
         }
 
         int = setInterval(displayTimer, 10);
-    }, 2500);
+    }, 2000);
 });
 
 function getRandomisedOrderArray() {
@@ -152,15 +164,17 @@ function getAnswer(event) {
     if (clicked.tagName === "BUTTON") {
         clicked.style.backgroundColor = 'rgb(58, 144, 26)';
         answer = clicked.textContent;
-        //answer = answer.slice(0, 10);
+        answer = answer.slice(3);
 
         userAnswer.push(answer);
     }
 }
 
+console.log(userAnswer);
+
 submitBtn.addEventListener("click", () => {
     if (userAnswer.toString() == correctAnswer.toString()) {
-        alert(`Correct! ${displayTimer()}`);
+        alert(`Točno! Vrijeme: ${displayTimer()}`);
     } else {
         alert('Try again!');
     }
@@ -186,6 +200,6 @@ function displayTimer() {
     s = seconds < 10 ? "0" + seconds : seconds;
     ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
 
-    return timerRef.innerHTML = `${s} : ${ms}`;
+    return timerRef.innerHTML = `${s}:${ms} s`;
 }
 

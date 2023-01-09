@@ -28,6 +28,8 @@ const submitBtn = document.getElementById("submitBtn");
 let randomQuestion = 0;
 let correctAnswer = [];
 
+let int = null;
+
 startBtn.addEventListener('click', () => {
     randomQuestion = Math.random() * questions.length | 0;
     questionElem.innerHTML = questions[randomQuestion].question;
@@ -95,13 +97,11 @@ submitBtn.addEventListener("click", () => {
 
     window.location.href = window.location.href;
     clearInterval(int);
-
 });
 
 //TIMER
 let [milliseconds, seconds] = [0, 0];
 let timerRef = document.getElementById("timerDisplay");
-let int = null;
 
 function displayTimer() {
     milliseconds += 10;

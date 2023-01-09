@@ -18,7 +18,77 @@ let questions = [
             3: 'Plete',
             4: 'Petlju'
         }
-    }
+    },
+    {
+        question: "Poredajte lektire od prvog osnovne do četvrtog srednje!",
+        answer:
+        {
+            1: 'Crvenkapica',
+            2: 'Junaci  Pavlove ulice',
+            3: 'Antigona',
+            4: 'Zločin i kazna'
+        }
+    },
+    {
+        question: "Sastavite rečenicu kojom Dinamovi kroničari opisuju partije Izeta Harjovića i Amera Gojaka!",
+        answer:
+        {
+            1: 'nema',
+            2: 'stranca',
+            3: 'do',
+            4: 'Bosanca'
+        }
+    },
+    {
+        question: "Poredajte hrvatske parkove prirode prema jugu!",
+        answer:
+        {
+            1: 'Medvednica',
+            2: 'Učka',
+            3: 'Telašćica',
+            4: 'Biokovo'
+        }
+    },
+    {
+        question: "Poredajte puhaće instrumente od najkraćeg prema najdužem!",
+        answer:
+        {
+            1: 'pikolo',
+            2: 'flauta',
+            3: 'fagot',
+            4: 'didžeridu'
+        }
+    },
+    {
+        question: "Složite nam dobru priču počevši od onoga što je uobičajeno prvo!",
+        answer:
+        {
+            1: 'uvod',
+            2: 'zaplet',
+            3: 'vrhunac',
+            4: 'rasplet'
+        }
+    },
+    {
+        question: "Poredajte književna djela prema broju riječi počevši od najsiromašnijeg po tom pitanju!",
+        answer:
+        {
+            1: 'Mala sirena',
+            2: 'Mali princ',
+            3: 'Veliki Gatsby',
+            4: 'Velika očekivanja'
+        }
+    },
+    {
+        question: "Krenuvši od one koja nikome ne stoji na leđima, poredajte životinje tako da tvore skulpturu bremenskih svirača!",
+        answer:
+        {
+            1: 'magarac',
+            2: 'pas',
+            3: 'mačak',
+            4: 'pijetao'
+        }
+    },
 ]
 const startBtn = document.getElementById("startBtn");
 const questionElem = document.getElementById("question");
@@ -52,7 +122,7 @@ startBtn.addEventListener('click', () => {
         }
 
         int = setInterval(displayTimer, 10);
-    }, 3000);
+    }, 2500);
 });
 
 function getRandomisedOrderArray() {

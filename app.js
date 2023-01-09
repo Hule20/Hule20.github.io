@@ -25,18 +25,15 @@ const questionElem = document.getElementById("question");
 const choicesElem = document.getElementById("choices");
 const submitBtn = document.getElementById("submitBtn");
 
-const NR_OF_CHOICES = 4;
-
 let randomQuestion = 0;
+let correctAnswer = [];
 
 startBtn.addEventListener('click', () => {
     randomQuestion = Math.random() * questions.length | 0;
     questionElem.innerHTML = questions[randomQuestion].question;
 
-    getChoices();
-});
+    correctAnswer = Object.values(questions[randomQuestion].answer);
 
-function getChoices() {
     let output = '';
     const choicesArr = getRandomisedOrderArray();
 
@@ -45,13 +42,22 @@ function getChoices() {
     })
 
     choicesElem.innerHTML = output;
-}
+
+    //Starts timer on loading with a 4 second delay
+    setTimeout(() => {
+        if (int !== null) {
+            clearInterval(int);
+        }
+
+        int = setInterval(displayTimer, 10);
+    }, 3000);
+});
 
 function getRandomisedOrderArray() {
     let randomOrderArr = [];
     let choice;
 
-    for (let index = 0; index < NR_OF_CHOICES; index++) {
+    for (let index = 0; index < 4; index++) {
 
         do {
             let randomPropNumber = Math.floor(Math.random() * (4 - 1 + 1)) + 1; //MIN 1, MAX 4
@@ -65,26 +71,23 @@ function getRandomisedOrderArray() {
 }
 
 choicesElem.addEventListener("click", getAnswer);
-let chosenAnswer = [];
+
+let userAnswer = [];
 
 function getAnswer(event) {
+
     const clicked = event.target;
     if (clicked.tagName === "BUTTON") {
         clicked.style.backgroundColor = 'rgb(58, 144, 26)';
         answer = clicked.textContent;
-        answer = answer.slice(0, 10);
+        //answer = answer.slice(0, 10);
 
-        chosenAnswer.push(answer);
+        userAnswer.push(answer);
     }
 }
 
-console.log(chosenAnswer);
-
-const correctAnswer = Object.values(questions[randomQuestion].answer);
-console.log(correctAnswer);
-
 submitBtn.addEventListener("click", () => {
-    if (chosenAnswer.toString() == correctAnswer) {
+    if (userAnswer.toString() == correctAnswer.toString()) {
         alert(`Correct! ${displayTimer()}`);
     } else {
         alert('Try again!');
@@ -96,6 +99,10 @@ submitBtn.addEventListener("click", () => {
 });
 
 //TIMER
+let [milliseconds, seconds] = [0, 0];
+let timerRef = document.getElementById("timerDisplay");
+let int = null;
+
 function displayTimer() {
     milliseconds += 10;
     if (milliseconds == 1000) {
@@ -112,17 +119,3 @@ function displayTimer() {
     return timerRef.innerHTML = `${s} : ${ms}`;
 }
 
-let [milliseconds, seconds] = [0, 0];
-let timerRef = document.getElementById("timerDisplay");
-let int = null;
-
-//Starts timer on loading with a 4 second delay
-window.addEventListener("load", () => {
-    setTimeout(() => {
-        if (int !== null) {
-            clearInterval(int);
-        }
-
-        int = setInterval(displayTimer, 10);
-    }, 4000)
-});

@@ -20,23 +20,28 @@ let questions = [
         }
     }
 ]
-
+const startBtn = document.getElementById("startBtn");
 const questionElem = document.getElementById("question");
 const choicesElem = document.getElementById("choices");
 const submitBtn = document.getElementById("submitBtn");
 
-
-let randomQuestion = Math.random() * questions.length | 0;
-questionElem.innerHTML = questions[randomQuestion].question;
-
 const NR_OF_CHOICES = 4;
+
+let randomQuestion = 0;
+
+startBtn.addEventListener('click', () => {
+    randomQuestion = Math.random() * questions.length | 0;
+    questionElem.innerHTML = questions[randomQuestion].question;
+
+    getChoices();
+});
 
 function getChoices() {
     let output = '';
     const choicesArr = getRandomisedOrderArray();
 
     choicesArr.forEach(choice => {
-        output += `<button class="choiceBtns">&#x2666; ${choice}</button>`;
+        output += `<button class="choiceBtns">${choice}</button>`;
     })
 
     choicesElem.innerHTML = output;
@@ -59,11 +64,6 @@ function getRandomisedOrderArray() {
     return randomOrderArr;
 }
 
-getChoices();
-
-const correctAnswer = Object.values(questions[randomQuestion].answer);
-console.log(correctAnswer);
-
 choicesElem.addEventListener("click", getAnswer);
 let chosenAnswer = [];
 
@@ -73,14 +73,44 @@ function getAnswer(event) {
         clicked.style.backgroundColor = 'rgb(58, 144, 26)';
         answer = clicked.textContent;
         answer = answer.slice(0, 10);
-        
+
         chosenAnswer.push(answer);
     }
 }
 
 console.log(chosenAnswer);
 
+const correctAnswer = Object.values(questions[randomQuestion].answer);
+console.log(correctAnswer);
+
+submitBtn.addEventListener("click", () => {
+    if (chosenAnswer.toString() == correctAnswer) {
+        alert(`Correct! ${displayTimer()}`);
+    } else {
+        alert('Try again!');
+    }
+
+    window.location.href = window.location.href;
+    clearInterval(int);
+
+});
+
 //TIMER
+function displayTimer() {
+    milliseconds += 10;
+    if (milliseconds == 1000) {
+        milliseconds = 0;
+        seconds++;
+    }
+
+    let s = 0;
+    let ms = 0;
+
+    s = seconds < 10 ? "0" + seconds : seconds;
+    ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
+
+    return timerRef.innerHTML = `${s} : ${ms}`;
+}
 
 let [milliseconds, seconds] = [0, 0];
 let timerRef = document.getElementById("timerDisplay");
@@ -95,32 +125,4 @@ window.addEventListener("load", () => {
 
         int = setInterval(displayTimer, 10);
     }, 4000)
-});
-
-let s = 0;
-let ms = 0;
-
-function displayTimer() {
-    milliseconds += 10;
-    if (milliseconds == 1000) {
-        milliseconds = 0;
-        seconds++;
-    }
-
-    s = seconds < 10 ? "0" + seconds : seconds;
-    ms = milliseconds < 10 ? "00" + milliseconds : milliseconds < 100 ? "0" + milliseconds : milliseconds;
-
-    timerRef.innerHTML = `${s} : ${ms}`;
-}
-
-submitBtn.addEventListener("click", () => {
-    if (chosenAnswer.toString() == correctAnswer) {
-        alert(`Correct! ${s}:${ms}`);
-    } else {
-        alert('Try again!');
-    }
-
-    window.location.href = window.location.href;
-    clearInterval(int);
-
 });

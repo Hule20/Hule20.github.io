@@ -9,7 +9,11 @@ body{
     height: 20vh;
     width: 100%;
     margin: auto;
-    margin-top: 8%;
+    margin-top: 2%;
+}
+
+#resetBtn{
+    visibility: hidden;
 }
 
 #question {
@@ -45,4 +49,15 @@ body{
     margin: 5px;
 }
 
+#submitBtn{
+    visibility: hidden;
+}
 
+.choiceBtns::before {
+    margin-right: 5px;
+    content: "\2666";
+}
+
+#answerLetter {
+    color: rgb(235, 229, 52);
+}

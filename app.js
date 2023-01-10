@@ -10,6 +10,105 @@ let questions = [
         }
     },
     {
+        question: "Kronološki poredajte britanske premijere!:",
+        answer: {
+            1: "Winston Churchill",
+            2: "John Major",
+            3: "Tony Blair",
+            4: "Boris Johnson"
+        }
+    },
+    {
+        question: "Poredaj kratice stručnih sprema počevši od najniže!",
+        answer: {
+            1: "NSS",
+            2: "SSS",
+            3: "VŠS",
+            4: "VSS"
+        }
+    },
+    {
+        question: "Poredajte riječi Gibonnijeve pjesme!",
+        answer: {
+            1: "ja",
+            2: "ću",
+            3: "budan",
+            4: "sanjati"
+        }
+    },
+    {
+        question: "Složite naslov znanog djela Simone de Beauvoir!",
+        answer: {
+            1: "uspomene",
+            2: "dobro",
+            3: "odgojene",
+            4: "djevojke"
+        }
+    },
+    {
+        question: "Poredajte cvjetove od najmanjeg prema najvećem!",
+        answer: {
+            1: "tratinčica",
+            2: "maslačak",
+            3: "tulipan",
+            4: "suncokret"
+        }
+    },
+    {
+        question: "Poredaj sljedeće korake u procesu disanja od udaha do izdaha:",
+        answer: {
+            1: "udah",
+            2: "nakupljanje kisika u plućima",
+            3: "izdah",
+            4: "razmjena plinova u plućima"
+        }
+    },
+    {
+        question: "Poredaj sljedeće kontinente po veličini od najvećeg do najmanjeg:",
+        answer: {
+            1: "Azija",
+            2: "Afrika",
+            3: "Europa",
+            4: "Antarktika"
+        }
+    },
+    {
+        question: "Poredaj sljedeće države po abecednom redu:",
+        answer: {
+            1: "Bosna i Hercegovina",
+            2: "Hrvatska",
+            3: "Slovenija",
+            4: "Srbija"
+        }
+    },
+    {
+        question: "Poredaj sljedeće vrste ptica po veličini od najmanje do najveće:",
+        answer: {
+            1: "vrapče",
+            2: "golub",
+            3: "galeb",
+            4: "orao"
+        }
+    },
+    {
+        question: "Poredaj sljedeće korake u procesu parenja životinja od početka do začeća:",
+        answer: {
+            1: "privlačenje",
+            2: "ritualni ples",
+            3: "parjenje",
+            4: "začeće"
+        }
+    },
+    {
+        question: "Redoslijed procesa disanja od udaha do izdaha je: udah, nakupljanje kisika u plućima, izdah, razmjena plinova u plućima",
+        answer: {
+            1: "udah",
+            2: "nakupljanje kisika u plućima",
+            3: "izdah",
+            4: "razmjena plinova u plućima"
+        }
+    },
+    {
         question: "Poredajte riječi tako da tvore poznatu jezikolomku!",
         answer:
         {
@@ -90,6 +189,7 @@ let questions = [
         }
     },
 ]
+
 const startBtn = document.getElementById("startBtn");
 const resetBtn = document.getElementById("resetBtn");
 const questionElem = document.getElementById("question");
